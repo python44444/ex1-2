@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request
+import requests
+import json
+
+# import json
 
 app = Flask(__name__)
 
@@ -12,12 +16,22 @@ def api():
 def api2():
     answer = request.form["animal"]
     if answer == "cat":
-        return "cat"
+        res = requests.get("https://api.thecatapi.com/v1/images/search")
+        # print(res.text)
+        # return res.text
+        # print(json.loads(res.text)["url"])
+        photo = json.loads(res.text)[0]["url"]
+
+        # photo = res.json()
     elif answer == "dog":
-        return "dog"
+        res = requests.get("https://dog.ceo/api/breeds/image/random")
+        # return res.text
+        photo = json.loads(res.text)["message"]
     else:
-        return "fox"
-    return render_template("post.html", answer=answer)
+        # res = requests.get("https://api.thecatapi.com/v1/images/search")
+        # photo = json.loads(res.text)[0]["url"]
+        photo = "https:\/\/images.dog.ceo\/breeds\/terrier-american\/n02093428_1291.jpg"
+    return render_template("post.html", photo=photo)
 
 
 if __name__ == "__main__":
