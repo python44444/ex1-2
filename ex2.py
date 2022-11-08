@@ -28,9 +28,7 @@ def api2():
         # return res.text
         photo = json.loads(res.text)["message"]
     else:
-        # res = requests.get("https://api.thecatapi.com/v1/images/search")
-        # photo = json.loads(res.text)[0]["url"]
-        photo = "https:\/\/images.dog.ceo\/breeds\/terrier-american\/n02093428_1291.jpg"
+        photo = "https:\/\/randomfox.ca\/images\/114.jpg"
     return render_template("post.html", photo=photo)
 
 
