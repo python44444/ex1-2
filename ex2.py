@@ -28,7 +28,9 @@ def api2():
         # return res.text
         photo = json.loads(res.text)["message"]
     else:
-        photo = "https:\/\/randomfox.ca\/images\/114.jpg"
+        res = requests.get("https://randomfox.ca/floof/")
+        photo = json.loads(res.text)["image"]
+
     return render_template("post.html", photo=photo)
 
 
