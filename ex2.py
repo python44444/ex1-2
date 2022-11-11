@@ -17,12 +17,8 @@ def api2():
     answer = request.form["animal"]
     if answer == "cat":
         res = requests.get("https://api.thecatapi.com/v1/images/search")
-        # print(res.text)
         # return res.text
-        # print(json.loads(res.text)["url"])
         photo = json.loads(res.text)[0]["url"]
-
-        # photo = res.json()
     elif answer == "dog":
         res = requests.get("https://dog.ceo/api/breeds/image/random")
         # return res.text
